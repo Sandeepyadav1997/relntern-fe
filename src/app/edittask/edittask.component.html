@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relntern Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <style>
+        .avatar {
+            vertical-align: middle;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        button:hover {
+            background-color: #4CAF50;
+            color: white;
+            transition: ease 0.5s;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+
+        #dashboard-menu:hover {
+            transform: translate(-1.5%, -1.5%);
+            transition: transform 0.45s;
+        }
+    </style>
+
+</head>
+
+<body class="bg-white-100">
+    <!-- <nav>
+        
+    </nav> -->
+    <!-- <nav aria-label="breadcrumb" >
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a (click)="navigateTo()">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add Task</li>
+        </ol>
+      </nav>
+       -->
+    <main class="container mx-auto mt-8 px-4">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+          <h2 class="text-2xl font-bold mb-4">Add Task</h2>
+
+          <form [formGroup]="registerForm" (ngSubmit)="updatetask()">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-gray-700 font mb-2" for="Add Task">Task</label>
+                <input type="text" id="task" name="task" formControlName="task"
+                  class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Add Task" #task [(ngModel)]="data.task.task" required>
+              </div>
+              <div>
+                <label class="block text-gray-700 font mb-2" for="Describe Task">Description</label>
+                <input type="text" id="description" name="description" formControlName="description"
+                  class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="description" #description [(ngModel)]="data.task.description" required>
+              </div>
+              <div>
+                <label class="block text-gray-700 font mb-2" for="start">Start Date</label>
+                <input type="date" id="start" name="start" formControlName="start"
+                  class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  #startdate [(ngModel)]="data.task.start" required>
+              </div>
+              <div>
+                <label class="block text-gray-700 font mb-2" for="end">End Date</label>
+                <input type="date" id="end" name="end" formControlName="end"
+                  class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  #enddate [(ngModel)]="data.task.end" required>
+              </div>
+
+
+              <label for="status">Status:</label>  
+              <select formControlName="status" class="form-control">  
+                  <option disabled>Select Status</option>  
+                  <option>Choose option</option>  
+                  <option *ngFor="let status of statusList">{{status}}</option>  
+              </select>  
+
+
+            <div class="mt-6">
+              <ul class="flex space-x-4 text-black">
+                <li> <button type="submit" value="Register"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    Update Task
+                  </button> </li>
+                <li> <button type="cancel" (click)="closeDialog()"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    Cancel
+                  </button> </li>
+              </ul>
+            </div>
+        </div>
+

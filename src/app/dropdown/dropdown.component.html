@@ -1,0 +1,9 @@
+<h4>Task</h4>
+<mat-form-field>
+  <mat-label>Task Status</mat-label>
+  <mat-select>
+    @for (task of tasks; track task) {
+      <mat-option [value]="task.value">{{task.viewValue}}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
