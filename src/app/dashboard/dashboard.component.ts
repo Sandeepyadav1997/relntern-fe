@@ -14,6 +14,8 @@ export class DashboardComponent {
 
   constructor(private router: Router, private internService: InternService, private matDialog: MatDialog) { }
 
+  
+
   ngOnInit(): void {
     this.getInterns();
     this.roledesc=localStorage.getItem("role");

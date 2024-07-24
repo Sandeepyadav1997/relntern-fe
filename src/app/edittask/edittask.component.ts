@@ -16,8 +16,11 @@ export class EdittaskComponent {
   //    {value: 'completed-1', viewValue: 'Completed'},
      
   //];
-  statusList = ["Inprogress" , "Completed"];
+  statusList = ["Inprogress" , "Completed",];
   
+  // Status: any ;
+  
+
 register(_t36: NgForm) {
 throw new Error('Method not implemented.');
 }
@@ -51,13 +54,15 @@ roledesc: any;
         status: ['', Validators.required],
         // mentor_id: []
       });
+      console.log(data);
+      this.registerForm.controls['status'].setValue(data.task.status);  
     }
     updatetask(){
       this.matDialog.closeAll();
-        this.router.navigate(['/list']);
+      this.router.navigate(['/list']);
       console.log(this.registerForm.value);
       this.internService.updateTask(this.data.task.id,this.registerForm.value).subscribe ((response: any) =>{
-        console.log (response);
+      console.log (response);
         
        
       })

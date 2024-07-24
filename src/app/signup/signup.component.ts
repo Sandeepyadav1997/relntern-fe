@@ -99,12 +99,15 @@ export class SignupComponent implements OnInit {
           this.alreadyExistToastr();
           this.router.navigate(['/login']);
         }
-        if(resp.result=="User  saved Successfully"){
+        else{
           this.successToastr();
         }
-        if(resp.result=="Some error occured"){
-          this.errorToastr();
-        }
+        // if(resp.result=="User  saved Successfully"){
+        //   this.successToastr();
+        // }
+        // if(resp.result=="Some error occured"){
+        //   this.errorToastr();
+        // }
         console.log('User registered successfully', resp);
           this.myForm.reset();
           // this.router.navigate(['/login']);

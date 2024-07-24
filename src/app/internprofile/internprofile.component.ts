@@ -88,7 +88,7 @@ export class InternprofileComponent {
       let documentJson: any={
       internid:this.internProfile?.id,
       date:this.today,
-      docname: `${this.internProfile.id}_${this.dateformat}_${this.time}`,
+      docname: `${this.internProfile?.id}_${this.dateformat}_${this.time}`,
     }
     console.log(documentJson);
     
@@ -102,7 +102,7 @@ export class InternprofileComponent {
   }
 
   getDocuments(){
-    this.internService.getDocumentByInternId(this.internProfile.id).subscribe((data)=> {
+    this.internService.getDocumentByInternId(this.internProfile?.id).subscribe((data)=> {
       console.log(data);
       this.uploadedFiles = data;
     })

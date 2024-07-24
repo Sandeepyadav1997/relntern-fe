@@ -65,8 +65,10 @@ else{
   deleteIntern(interns: { id: any; }) {
     this.internService.deleteIntern(interns.id).subscribe(
       (resp) => {
+        this.getActiveInterns();
         console.log(resp);
-        this.internDetails = resp;
+        // this.internDetails = resp;
+        alert("successfully deleted");
       },
       (err) => console.log(err)
     );

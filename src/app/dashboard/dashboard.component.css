@@ -184,3 +184,16 @@
     color: rgb(179, 97, 97);
     cursor: pointer;
   }
+
+  img{
+
+    border-radius: 5px;
+   
+  }
+  mat-icon{
+   font-size:  30px;
+   width: 50px;
+  }
+  button{
+    margin-left: 60px;
+  }

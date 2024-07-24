@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class AppComponent {
   title = 'relntern';
+  
   constructor(private internService: InternService) {
     
    }

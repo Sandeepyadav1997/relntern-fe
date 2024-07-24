@@ -11,6 +11,10 @@ import { MentordeleteComponent } from '../mentordelete/mentordelete.component';
   styleUrls: ['./mentorlist.component.css']
 })
 export class MentorlistComponent {
+mentors: any;
+openMentorDetails(arg0: any) {
+throw new Error('Method not implemented.');
+}
   mentorDetails: any;
   constructor(private router: Router , private internService: InternService, private matDialog: MatDialog) { }
 

@@ -109,7 +109,10 @@
                   formControlName="end"  required>
               </div>
 
-              <label for="status">Status:</label>  
+              <label for="status">Status :</label>  
+              <!-- <div class="form-text text-danger font flex items-start" *ngIf="Status.errors?.['required']">
+                *
+              </div> -->
               <select formControlName="status" class="form-control">  
                   <option disabled>Select Status</option>  
                   <option>Choose option</option>  
@@ -123,7 +126,7 @@
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
                     Add Task
                   </button> </li>
-                <li> <button type="cancel"
+                <li> <button (click)="onClick()" type="cancel" 
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
                     Cancel
                   </button> </li>

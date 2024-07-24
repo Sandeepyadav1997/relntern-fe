@@ -286,6 +286,8 @@
     color: rgb(179, 97, 97);
     cursor: pointer;
   }
-
+.items-center{
+  text-justify: left;
+}
   
 

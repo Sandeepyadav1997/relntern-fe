@@ -37,11 +37,25 @@
       transition: transform 0.45s;
     }
 
-    #table-div{
+    #table-div {
       margin-bottom: 10px;
     }
-  </style>
 
+    .invalid {
+      border-color: red;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 0.875em;
+    }
+
+    .alert {
+      color: red;
+      font-size: 1em;
+      margin-bottom: 1em;
+    }
+  </style>
 </head>
 
 <body class="bg-white-100">
@@ -52,28 +66,32 @@
           <img class="mx-auto h-10 w-auto"
             src="https://1000logos.net/wp-content/uploads/2021/08/Reliance-Industries-Limited-RIL-Logo-500x314.jpg"
             alt="Your Company" (click)="navigateTo()">
-
         </h1>
         <nav>
           <ul class="flex space-x-4 text-black">
             <li>
-              <a><h2 class=" text-black font-bold py-2 px-4 rounded mt-4">{{roledesc}}</h2></a>
+              <a>
+                <h2 class="text-black font-bold py-2 px-4 rounded mt-4">{{roledesc}}</h2>
+              </a>
             </li>
-            <li id="Add_Mentor"><button type="button"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
-                (click)="goToPage('inactive')">Past Interns</button></li>
-            <li id="Add_Mentor"><button type="button"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
-                (click)="goToPage('mentorlist')">Mentor List</button></li>
-            <li id="Add_Mentor"><button type="button"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
-                (click)="logout()">Logout</button></li>
-
+            <li id="Add_Mentor">
+              <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+                (click)="goToPage('inactive')">Past Interns</button>
+            </li>
+            <li id="Add_Mentor">
+              <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+                (click)="goToPage('mentorlist')">Mentor List</button>
+            </li>
+            <li id="Add_Mentor">
+              <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+                (click)="logout()">Logout</button>
+            </li>
           </ul>
         </nav>
       </div>
     </header>
   </nav>
+
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a (click)="navigateTo()">Home</a></li>
@@ -84,69 +102,117 @@
   <main class="container mx-auto mt-8 px-4">
     <div class="bg-white rounded-lg shadow-lg p-8">
       <h2 class="text-2xl font-bold mb-4">Add Mentor</h2>
-      <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+      <form #registerForm="ngForm" (ngSubmit)="register(registerForm)" novalidate>
+        <!-- Alert for mandatory fields -->
+        <div *ngIf="registerForm.invalid && registerForm.submitted" class="alert">
+          Please fill in all mandatory fields.
+        </div>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
             <label class="block text-gray-700 font mb-2" for="mentorname">Mentor Name</label>
-            <input type="text" id="mentorname" name="mentorname"
+            <input type="text" id="mentorname" name="mentorname" ngModel
               class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter Mentor name" #mentorname (ngModel)="mentorname" required>
+              placeholder="Enter Mentor name" required #mentorname="ngModel" pattern="[a-zA-Z\s]*"
+              [class.invalid]="mentorname.invalid && (registerForm.submitted || mentorname.touched)">
+            <div *ngIf="mentorname.invalid && (registerForm.submitted || mentorname.touched)"
+              class="error-message">
+              <div *ngIf="mentorname.errors?.['required']">Mentor Name is required.</div>
+              <div *ngIf="mentorname.errors?.['pattern']">Mentor Name must only contain letters and spaces.</div>
+            </div>
           </div>
+
           <div>
             <label class="block text-gray-700 font mb-2" for="mentoremail">Mentor Email</label>
-            <input type="email" id="mentoremail" name="mentoremail"
+            <input type="email" id="mentoremail" name="mentoremail" ngModel
               class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter mentor email" #mentoremail (ngModel)="mentoremail" required>
+              placeholder="Enter mentor email" required #mentoremail="ngModel" pattern="^[^\d\s]+@[^\d\s]+\.[^\d\s]+$"
+              [class.invalid]="mentoremail.invalid && (registerForm.submitted || mentoremail.touched)">
+            <div *ngIf="mentoremail.invalid && (registerForm.submitted || mentoremail.touched)"
+              class="error-message">
+              <div *ngIf="mentoremail.errors?.['required']">Mentor Email is required.</div>
+              <div *ngIf="mentoremail.errors?.['pattern']">Enter a valid email address without numbers.</div>
+            </div>
           </div>
 
           <div>
-            <label class="block text-gray-700 font mb-2" for="project">L1 Name</label>
-            <input type="text" id="l1name" name="l1name"
+            <label class="block text-gray-700 font mb-2" for="l1name">L1 Name</label>
+            <input type="text" id="l1name" name="l1name" ngModel
               class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter L1 name" #l1name (ngModel)="l1name" required>
-          </div>
-          <div>
-            <label class="block text-gray-700 font mb-2" for="project">L1 Email</label>
-            <input type="text" id="l1email" name="l1email"
-              class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter L1 Email" #l1email (ngModel)="l1email" required>
+              placeholder="Enter L1 name" required #l1name="ngModel" pattern="[a-zA-Z\s]*"
+              [class.invalid]="l1name.invalid && (registerForm.submitted || l1name.touched)">
+            <div *ngIf="l1name.invalid && (registerForm.submitted || l1name.touched)" class="error-message">
+              <div *ngIf="l1name.errors?.['required']">L1 Name is required.</div>
+              <div *ngIf="l1name.errors?.['pattern']">L1 Name must only contain letters and spaces.</div>
+            </div>
           </div>
 
-          <div  class="col-span-2">
-            <label class="block text-gray-700 font mb-2" for="jobRole">Role</label>
-            <input type="text" id="Role" name="Role"
+          <div>
+            <label class="block text-gray-700 font mb-2" for="l1email">L1 Email</label>
+            <input type="email" id="l1email" name="l1email" ngModel
               class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-              #Role (ngModel)="Role" placeholder="Ex. Full-Stack Developer" required>
+              placeholder="Enter L1 Email" required #l1email="ngModel" pattern="^[^\d\s]+@[^\d\s]+\.[^\d\s]+$"
+              [class.invalid]="l1email.invalid && (registerForm.submitted || l1email.touched)">
+            <div *ngIf="l1email.invalid && (registerForm.submitted || l1email.touched)" class="error-message">
+              <div *ngIf="l1email.errors?.['required']">L1 Email is required.</div>
+              <div *ngIf="l1email.errors?.['pattern']">Enter a valid email address without numbers.</div>
+            </div>
           </div>
+
+          <div class="col-span-2">
+            <label class="block text-gray-700 font mb-2" for="Role">Role</label>
+            <input type="text" id="Role" name="Role" ngModel
+              class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Ex. Full-Stack Developer" required #Role="ngModel" pattern="[a-zA-Z\s]*"
+              [class.invalid]="Role.invalid && (registerForm.submitted || Role.touched)">
+            <div *ngIf="Role.invalid && (registerForm.submitted || Role.touched)" class="error-message">
+              <div *ngIf="Role.errors?.['required']">Role is required.</div>
+              <div *ngIf="Role.errors?.['pattern']">Role must only contain letters and spaces.</div>
+            </div>
+          </div>
+
           <div class="col-span-2">
             <label class="block text-gray-700 font mb-2" for="association">Association</label>
-            <select id="association" name="association"
+            <select id="association" name="association" ngModel
               class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-              #association (ngModel)="association" required>
+              required #association="ngModel" [class.invalid]="association.invalid && (registerForm.submitted || association.touched)">
               <option value="" disabled selected>Select association</option>
               <option value="PetChem IT">PetChem IT</option>
               <option value="Finance">Finance</option>
               <option value="Marketing">Marketing</option>
               <option value="HR">HR</option>
             </select>
+            <div *ngIf="association.invalid && (registerForm.submitted || association.touched)" class="error-message">
+              <div *ngIf="association.errors?.['required']">Association is required.</div>
+            </div>
           </div>
         </div>
 
         <div class="mt-6">
           <ul class="flex space-x-4 text-black">
-            <li> <button type="submit"
+            <div *ngIf="registerForm.invalid && registerForm.submitted">
+              <div class="alert alert-danger" role="alert">Please fill in all mandatory fields.
+              </div>
+              </div>
+          
+            <li>
+              <button type="submit" [disabled]="registerForm.invalid"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
                 Save
-              </button> </li>
-            <li> <button type="cancel" (click)="navigateTo()"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" style=" background-color: #7c0d0d;">
+              </button>
+            </li>
+            <li>
+              <button type="button" (click)="navigateTo()"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                style="background-color: #7c0d0d;">
                 Cancel
-              </button> </li>
+              </button>
+            </li>
           </ul>
         </div>
-
       </form>
     </div>
   </main>
-
 </body>
+
+</html>

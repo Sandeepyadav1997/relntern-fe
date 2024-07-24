@@ -31,3 +31,9 @@
   #checkboxes label:hover {
     background-color: #1e90ff;
   }
+  .dateform{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  
+  }

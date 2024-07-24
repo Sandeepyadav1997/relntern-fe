@@ -186,46 +186,46 @@
     <div class="container mx-auto mt-2">
         <div class="grid-container">
             <div class="grid-item border-4">
-                <h3 class="profile-name">{{ internProfile.fullname }}</h3>
-                <p class="profile-role">{{internProfile.role}}</p>
+                <h3 class="profile-name">{{ internProfile?.fullname }}</h3>
+                <p class="profile-role">{{internProfile?.role}}</p>
             </div>
 
             <div class="grid-item">
                 <h3 class="section-title"><u>Personal Information</u></h3>
-                <div class="info-item"><strong>DOB: </strong>{{ internProfile.dob }}</div>
-                <div class="info-item"><strong>Email: </strong>{{ internProfile.email }}</div>
-                <div class="info-item"><strong>Phone: </strong>{{ internProfile.phone }}</div>
-                <div class="info-item"><strong>Location: </strong>{{ internProfile.location }}</div>
+                <div class="info-item"><strong>DOB: </strong>{{ internProfile?.dob }}</div>
+                <div class="info-item"><strong>Email: </strong>{{ internProfile?.email }}</div>
+                <div class="info-item"><strong>Phone: </strong>{{ internProfile?.phone }}</div>
+                <div class="info-item"><strong>Location: </strong>{{ internProfile?.location }}</div>
                 <!-- <div class="info-item"><strong>Reference Name: </strong> {{internProfile.reference}}</div> -->
-                <div class="info-item"><strong>Linkedin URL: </strong> {{internProfile.linkedlink}}</div>
-                <div class="info-item"><strong>Quarter: </strong> {{internProfile.quarter}}</div>
+                <div class="info-item"><strong>Linkedin URL: </strong> {{internProfile?.linkedlink}}</div>
+                <div class="info-item"><strong>Quarter: </strong> {{internProfile?.quarter}}</div>
             </div>
 
             <div class="grid-item">
                 <h3 class="section-title"><u>Project Details</u></h3>
-                <div class="info-item"><strong>Project Name: </strong>{{ internProfile.projectname }}</div>
+                <div class="info-item"><strong>Project Name: </strong>{{ internProfile?.projectname }}</div>
                 <!-- <div class="info-item"><strong>Project Status: </strong>{{internProfile.projectstatus}}</div> -->
                 <!-- <div class="progress-bar-container">
                     <div class="progress-bar"></div>
                 </div> -->
-                <div class="info-item"><strong>Start Date: </strong> {{ internProfile.startDate}}</div>
-                <div class="info-item"><strong>End Date: </strong> {{ internProfile.endDate}}</div>
+                <div class="info-item"><strong>Start Date: </strong> {{ internProfile?.startDate}}</div>
+                <div class="info-item"><strong>End Date: </strong> {{ internProfile?.endDate}}</div>
             </div>
 
             <div class="grid-item">
                 <h3 class="section-title"><u>Educational Details</u></h3>
-                <div class="info-item"><strong>University: </strong> {{ internProfile.uniname}}</div>
-                <div class="info-item"><strong>Course Name: </strong> {{ internProfile.coursename}}</div>
-                <div class="info-item"><strong>Specialization: </strong> {{ internProfile.specialization}}</div>
-                <div class="info-item"><strong>Graduation Year: </strong> {{ internProfile.gradyear}}</div>
-                <div class="info-item"><strong>Semester Joined: </strong> {{ internProfile.semester}}</div>
+                <div class="info-item"><strong>University: </strong> {{ internProfile?.uniname}}</div>
+                <div class="info-item"><strong>Course Name: </strong> {{ internProfile?.coursename}}</div>
+                <div class="info-item"><strong>Specialization: </strong> {{ internProfile?.specialization}}</div>
+                <div class="info-item"><strong>Graduation Year: </strong> {{ internProfile?.gradyear}}</div>
+                <div class="info-item"><strong>Semester Joined: </strong> {{ internProfile?.semester}}</div>
             </div>
 
             <div class="grid-item">
                 <h3 class="section-title"><u>Mentor Details</u></h3>
-                <div class="info-item"><strong>Mentor Name: </strong> {{ internProfile.mentor }}</div>
-                <div class="mentor-details"><strong>Mentor Email: </strong>{{ internProfile.mentoremail }}</div>
-                <div class="mentor-details"><strong>Association: </strong>{{ internProfile.association }}</div>
+                <div class="info-item"><strong>Mentor Name: </strong> {{ internProfile?.mentor }}</div>
+                <div class="mentor-details"><strong>Mentor Email: </strong>{{ internProfile?.mentoremail }}</div>
+                <div class="mentor-details"><strong>Association: </strong>{{ internProfile?.association }}</div>
             </div>
             <form [formGroup]="uploadDocument" (ngSubmit)="upload()">
             <div *ngIf="isintern" class=" mt-2 grid-item border outline-dashed outline-2 outline-offset-1">

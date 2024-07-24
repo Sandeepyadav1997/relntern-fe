@@ -32,7 +32,7 @@ import { MentordashboardComponent } from './mentordashboard/mentordashboard.comp
 import { InterndashboardComponent } from './interndashboard/interndashboard.component';
 import { InactiveDeleteComponent } from './inactive-delete/inactive-delete.component';
 import { ScheduleComponent } from './schedule/schedule.component';
-import { NgChartsModule } from 'ng2-charts';
+// import { NgChartsModule } from 'ng2-charts';
 import { MentordeleteComponent } from './mentordelete/mentordelete.component';
 import { InactiveprofiledialogComponent } from './inactiveprofiledialog/inactiveprofiledialog.component';
 import { GantchartComponent } from './gantchart/gantchart.component';
@@ -47,6 +47,7 @@ import { TaskStatusComponent } from './task-status/task-status.component';
 import { HeaderComponent } from './header/header.component';
 import { EdittaskComponent } from './edittask/edittask.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MentordetailsComponent } from './mentordetails/mentordetails.component';
 //import { DropdownComponent } from './dropdown/dropdown.component';
 
 
@@ -84,6 +85,7 @@ import { MatSelectModule } from '@angular/material/select';
     TaskStatusComponent,
     HeaderComponent,
     EdittaskComponent,
+    MentordetailsComponent,
     //DropdownComponent
   ],
   imports: [
@@ -100,7 +102,7 @@ import { MatSelectModule } from '@angular/material/select';
     MaterialModule,
     ToastrModule.forRoot({progressBar:true,progressAnimation:'increasing',preventDuplicates:true}),
     GanttModule,
-    NgChartsModule,
+    // NgChartsModule,
     MatMenuModule,
     ClarityModule,
     MatSelectModule,

@@ -188,16 +188,18 @@
           </div>
 
           <div>
-  <div class="md:flex">
-    <label class="text-gray-700 md:mb-2 md:mr-2" for="dob">Birth Date</label>
-    <div class="form-text text-danger font flex items-start" *ngIf="dob.errors?.['required']">
-      *
-    </div>
-  </div>
-  <input type="date" id="startDate" name="dob"
-    class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-    formControlName="dob">
-</div>
+            <div class="md:flex">
+              <label class="text-gray-700 md:mb-2 md:mr-2" for="dob">Birth Date</label>
+              <div class="form-text text-danger font flex items-start" *ngIf="dob.errors?.['required']">
+                *
+              </div>
+            </div>
+            <input type="date" id="dob" name="dob"
+              class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              formControlName="dob" min="1927-01-01" max="2006-12-31">
+          </div>
+          
+
 
 <div>
   <div class="md:flex">
@@ -283,10 +285,11 @@
               <div class="form-text text-danger font flex items-start" *ngIf="semester.errors?.['required']">
                 *
               </div>
+              
             </div>
             <input type="number" id="semester" name="semester"
               class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter joining semester" formControlName="semester">
+              placeholder="Enter joining semester" formControlName="semester" min="1"  max="8">
           </div>
           
           <h2 class="text-3xl mt-2 font-bold col-span-2">Internship Details</h2>
@@ -397,7 +400,7 @@
               placeholder="Please enter the percentage" formControlName="projectstatus">
           </div> -->
 
-          <div>
+          <!-- <div>
             <div class="md:flex">
               <label class="text-gray-700 md:mb-2 md:mr-2" for="startDate">Start Date</label>
               <div class="form-text text-danger font flex items-start" *ngIf="startDate.errors?.['required']">
@@ -407,9 +410,36 @@
             <input type="date" id="startDate" name="startDate"
               class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
               formControlName="startDate">
-          </div>
+              
+          </div> -->
 
-          <div>
+
+          <div [formGroup]="dateForm" class="dateform">
+            
+              <div class="md:flex mb-4">
+                <label class="text-gray-700 md:mb-2 md:mr-2" for="startDate">Start Date</label>
+                <input type="date" id="startDate" formControlName="startDate"
+                  class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  (change)="validateDates()">
+              </div>
+  
+              <div class="md:flex">
+                <label class="text-gray-700 md:mb-2 md:mr-2" for="endDate">End Date</label>
+                <input type="date" id="endDate" formControlName="endDate"
+                  class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  (change)="validateDates()">
+              </div>
+              <div *ngIf="dateError" class="text-danger font mt-2">
+                End date must be greater than start date.
+              </div>
+            
+          </div>
+          
+          
+
+          
+
+          <!-- <div>
             <div class="md:flex">
               <label class="text-gray-700 md:mb-2 md:mr-2" for="endDate">End Date</label>
               <div class="form-text text-danger font flex items-start" *ngIf="endDate.errors?.['required']">
@@ -419,7 +449,7 @@
             <input type="date" id="endDate" name="endDate"
               class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
               formControlName="endDate">
-          </div>
+          </div> -->
 
         </div>
 

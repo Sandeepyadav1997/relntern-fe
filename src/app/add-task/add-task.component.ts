@@ -11,12 +11,15 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./add-task.component.css']
 })
 export class AddTaskComponent {
+// Status: any;
+onClick() {
+throw new Error('Method not implemented.');
+}
   registerForm: any;
   internId:any;
-  // mentor_id : any;
   mentoruserid: any;
   mentor_id: any;
-  statusList = ["Inprogress" , "Completed"];
+  statusList = ["Inprogress" , "Completed", ];
  
   constructor(private internService: InternService, private router: Router,
    

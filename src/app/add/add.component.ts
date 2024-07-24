@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators,FormControl,ReactiveFormsModule,FormsModule, NgForm, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators,FormControl,ReactiveFormsModule,FormsModule, NgForm, FormArray, ValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
 import { InternService } from '../intern.service';
 import { Router } from '@angular/router';
 import { OnInit } from '@angular/core';
@@ -16,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AddComponent implements OnInit{
 
+  // formSubmitAttempt!: boolean;
   internDetails: any;
   internEmail : any;
   test : any;
@@ -28,7 +29,12 @@ export class AddComponent implements OnInit{
   // mentors: any[] = [];
   //quarterarray:string[]=[];
   toppingList: string[] = ['Q1', 'Q2', 'Q3', 'Q4'];
-myForm: any;
+  myForm: any;
+  dateForm: FormGroup<{ startDate: FormControl<string | null>; endDate: FormControl<string | null>; }>;
+  dateError!: boolean;
+
+  
+
 
   ngOnInit(): void {
     this.getInterns();
@@ -60,8 +66,26 @@ constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     private matDialog: MatDialog,
-    private toastr:ToastrService
-  ) {}
+    private toastr:ToastrService,
+    private fb:FormBuilder,
+  ) {
+
+    this.dateForm = this.fb.group({
+      startDate: ['', Validators.required],
+      endDate: ['', Validators.required]
+    });
+  }
+
+  validateDates() {
+    const startDate = this.dateForm.get('startDate')?.value;
+    const endDate = this.dateForm.get('endDate')?.value;
+
+    if (startDate && endDate && new Date(startDate) >= new Date(endDate)) {
+      this.dateError = true;
+    } else {
+      this.dateError = false;
+    }
+  }
 
 reset(){
   this.registerForm.reset();
@@ -73,14 +97,14 @@ reset(){
       role: new FormControl('',[Validators.required]),
       association: new FormControl('', Validators.required),
       phone:new FormControl("", [Validators.required,Validators.minLength(10),Validators.maxLength(10),Validators.pattern("[0-9]*")]),
-      dob:new FormControl('', Validators.required),
+      dob:new FormControl('', [Validators.required,]),
       location: new FormControl('', [Validators.required,Validators.maxLength(25)]),
       reference : new FormControl('', Validators.required),
 
       gradyear: new FormControl('', Validators.required),
       uniname: new FormControl('', Validators.required),
       coursename: new FormControl('', Validators.required),
-      semester: new FormControl('', Validators.required),
+      semester: new FormControl('', [Validators.required, ]),
       specialization : new FormControl('', Validators.required),
       
       // linkedlink : new FormControl("",[Validators.required]),
@@ -116,6 +140,12 @@ reset(){
     //   });
     // }
   
+
+
+    
+    
+
+
 
 
   register() {
@@ -335,4 +365,11 @@ reset(){
   goToPage(pageName: string): void {
     this.router.navigate([`${pageName}`]);
   }
+
+  // onSubmit() {
+  //   this.formSubmitAttempt = true;
+  //   if (this.form.valid) {
+  //     console.log('form submitted');
+  //   }
+  // }
 }

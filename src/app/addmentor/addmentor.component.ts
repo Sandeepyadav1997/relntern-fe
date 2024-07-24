@@ -10,7 +10,11 @@ import { InternService } from '../intern.service';
 })
 export class AddmentorComponent {
   mentorDetails: any;
+registerForm: any;
+  
+  
   constructor(private router:Router, private internService : InternService) { }
+  
 
   ngOnInit(): void {
     this.roledesc=localStorage.getItem("role");
@@ -37,6 +41,9 @@ export class AddmentorComponent {
   isMentor: boolean=false;
   isintern: boolean=false;
   roledesc: any;
+
+  
+  
   validaterole(roledesc:any){
     if(roledesc=="admin"){
       this.isAdmin=true;
