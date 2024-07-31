@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { InternprofileComponent } from '../internprofile/internprofile.component';
 import { MatDialog } from '@angular/material/dialog';
 import { InternService } from '../intern.service';
-import { TaskStatusComponent } from '../task-status/task-status.component';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { EdittaskComponent } from '../edittask/edittask.component';
+import {TaskStatusComponent } from '../task-status/task-status.component';
 
 @Component({
   selector: 'app-interndashboard',

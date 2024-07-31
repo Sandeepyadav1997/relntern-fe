@@ -55,12 +55,17 @@
       font-size: 1em;
       margin-bottom: 1em;
     }
+
+    .required:after {
+      content: " *";
+      color: red;
+    }
   </style>
 </head>
 
 <body class="bg-white-100">
   <nav>
-    <header class="bg-white py-4">
+    <header class="bg-neutral-500 py-1">
       <div class="container mx-auto flex justify-between items-center px-4">
         <h1 class="text-black text-xl font-bold flex items-center">
           <img class="mx-auto h-10 w-auto"
@@ -82,10 +87,17 @@
               <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
                 (click)="goToPage('mentorlist')">Mentor List</button>
             </li>
-            <li id="Add_Mentor">
+            <!-- <li id="Add_Mentor">
               <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
                 (click)="logout()">Logout</button>
-            </li>
+            </li> -->
+            <div class="">
+              <button mat-button [matMenuTriggerFor]="menu" class="border-2 shadow-lg rounded-lg md:px-2 py-4 mt-3 text-white bg-gradient-to-r from-blue-500 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4  focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"><img class="h-10" src="../../assets/icons8-account.gif"><mat-icon>keyboard_arrow_down</mat-icon></button>
+              <mat-menu #menu="matMenu">
+                <button class="mb-2 text-lg font-bold text-white bg-gradient-to-r from-blue-200 via-blue-300 to-blue-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80" ></button>
+                <button class="justify-center text-lg font-bold text-white bg-gradient-to-l from-blue-200 via-blue-300 to-blue-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80" mat-menu-item (click)="logout()"><u>Logout</u></button>
+              </mat-menu>
+            </div>
           </ul>
         </nav>
       </div>
@@ -103,6 +115,7 @@
     <div class="bg-white rounded-lg shadow-lg p-8">
       <h2 class="text-2xl font-bold mb-4">Add Mentor</h2>
       <form #registerForm="ngForm" (ngSubmit)="register(registerForm)" novalidate>
+
         <!-- Alert for mandatory fields -->
         <div *ngIf="registerForm.invalid && registerForm.submitted" class="alert">
           Please fill in all mandatory fields.
@@ -110,33 +123,31 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
-            <label class="block text-gray-700 font mb-2" for="mentorname">Mentor Name</label>
+            <label class="block text-gray-700 font mb-2 required" for="mentorname">Mentor Name</label>
             <input type="text" id="mentorname" name="mentorname" ngModel
               class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter Mentor name" required #mentorname="ngModel" pattern="[a-zA-Z\s]*"
               [class.invalid]="mentorname.invalid && (registerForm.submitted || mentorname.touched)">
-            <div *ngIf="mentorname.invalid && (registerForm.submitted || mentorname.touched)"
-              class="error-message">
+            <div *ngIf="mentorname.invalid && (registerForm.submitted || mentorname.touched)" class="error-message">
               <div *ngIf="mentorname.errors?.['required']">Mentor Name is required.</div>
               <div *ngIf="mentorname.errors?.['pattern']">Mentor Name must only contain letters and spaces.</div>
             </div>
           </div>
 
           <div>
-            <label class="block text-gray-700 font mb-2" for="mentoremail">Mentor Email</label>
+            <label class="block text-gray-700 font mb-2 required" for="mentoremail">Mentor Email</label>
             <input type="email" id="mentoremail" name="mentoremail" ngModel
               class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter mentor email" required #mentoremail="ngModel" pattern="^[^\d\s]+@[^\d\s]+\.[^\d\s]+$"
               [class.invalid]="mentoremail.invalid && (registerForm.submitted || mentoremail.touched)">
-            <div *ngIf="mentoremail.invalid && (registerForm.submitted || mentoremail.touched)"
-              class="error-message">
+            <div *ngIf="mentoremail.invalid && (registerForm.submitted || mentoremail.touched)" class="error-message">
               <div *ngIf="mentoremail.errors?.['required']">Mentor Email is required.</div>
               <div *ngIf="mentoremail.errors?.['pattern']">Enter a valid email address without numbers.</div>
             </div>
           </div>
 
           <div>
-            <label class="block text-gray-700 font mb-2" for="l1name">L1 Name</label>
+            <label class="block text-gray-700 font mb-2 required" for="l1name">L1 Name</label>
             <input type="text" id="l1name" name="l1name" ngModel
               class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter L1 name" required #l1name="ngModel" pattern="[a-zA-Z\s]*"
@@ -148,7 +159,7 @@
           </div>
 
           <div>
-            <label class="block text-gray-700 font mb-2" for="l1email">L1 Email</label>
+            <label class="block text-gray-700 font mb-2 required" for="l1email">L1 Email</label>
             <input type="email" id="l1email" name="l1email" ngModel
               class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter L1 Email" required #l1email="ngModel" pattern="^[^\d\s]+@[^\d\s]+\.[^\d\s]+$"
@@ -160,7 +171,7 @@
           </div>
 
           <div class="col-span-2">
-            <label class="block text-gray-700 font mb-2" for="Role">Role</label>
+            <label class="block text-gray-700 font mb-2 required" for="Role">Role</label>
             <input type="text" id="Role" name="Role" ngModel
               class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Ex. Full-Stack Developer" required #Role="ngModel" pattern="[a-zA-Z\s]*"
@@ -172,7 +183,7 @@
           </div>
 
           <div class="col-span-2">
-            <label class="block text-gray-700 font mb-2" for="association">Association</label>
+            <label class="block text-gray-700 font mb-2 required" for="association">Association</label>
             <select id="association" name="association" ngModel
               class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
               required #association="ngModel" [class.invalid]="association.invalid && (registerForm.submitted || association.touched)">
@@ -190,11 +201,6 @@
 
         <div class="mt-6">
           <ul class="flex space-x-4 text-black">
-            <div *ngIf="registerForm.invalid && registerForm.submitted">
-              <div class="alert alert-danger" role="alert">Please fill in all mandatory fields.
-              </div>
-              </div>
-          
             <li>
               <button type="submit" [disabled]="registerForm.invalid"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">

@@ -45,15 +45,14 @@
 
 </head>
 
-<body class="md:px-6 h-auto bg-[#f8fafd]">
+<body class="h-auto bg-[#f8fafd]">
   <nav>
-    <header class="bg-neutral-500 py-4">
+    <header class="bg-neutral-500 py-1">
       <div class="container mx-auto flex justify-between items-center px-4">
         <div class="text-black text-xl font-bold flex items-center">
           <img class="mx-auto md:h-16 h-12 w-auto cursor-pointer"
             src="https://1000logos.net/wp-content/uploads/2021/08/Reliance-Industries-Limited-RIL-Logo-500x314.jpg"
             alt="Your Company" (click)="navigateTo()">
-
         </div>
         <div>
           <div class="flex space-x-4 text-black">
@@ -61,19 +60,25 @@
               <a><div class="italic text-xl text-black font-bold py-2 px-4 rounded mt-4">
                   {{roledesc}}</div ></a>
            </div>
-            <div id="Add_Mentor"><button type="button"
+            <!-- <div id="Add_Mentor"><button type="button"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
                 (click)="goToPage('inactive')">Past Interns</button></div>
             <div id="Add_Mentor"><button type="button"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
-                (click)="goToPage('list')">Active Interns</button></div>
+                (click)="goToPage('list')">Active Interns</button></div> -->
             <!-- <div id="Add_Mentor"><button type="button"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
                 (click)="goToPage('mentorlist')">Mentor List</button></div>
             <div id="Add_Mentor"><button type="button"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
                 (click)="logout()">Logout</button></div> -->
-
+                <div class="">
+                  <button mat-button [matMenuTriggerFor]="menu" class="border-2 shadow-lg rounded-lg md:px-2 py-4 mt-2 text-white bg-gradient-to-r from-blue-500 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4  focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"><img class="h-10" src="../../assets/icons8-account.gif"><mat-icon>keyboard_arrow_down</mat-icon></button>
+                  <mat-menu #menu="matMenu">
+                    <button class="mb-2 text-lg font-bold text-white bg-gradient-to-r from-blue-200 via-blue-300 to-blue-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80" ></button>
+                    <button class="justify-center text-lg font-bold text-white bg-gradient-to-l from-blue-200 via-blue-300 to-blue-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80" mat-menu-item (click)="logout()"><u>Logout</u></button>
+                  </mat-menu>
+                </div>
           </div>
         </div>
       </div>
@@ -378,6 +383,9 @@
             <!-- <div class="md:flex"> -->
               <label class="text-gray-700 md:mb-2 md:mr-2" for="mentoremail">Mentor Email</label>
               <!-- <div class="border border-gray-300 rounded-md px-3 py-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" >{{test}}</div> -->
+              <div class="form-text text-danger font flex items-start" *ngIf="mentoremail.errors?.['required']">
+                *
+              </div>
             <input readonly id="mentoremail" name="mentoremail"
               class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="" formControlName="mentoremail">

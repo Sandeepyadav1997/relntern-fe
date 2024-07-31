@@ -93,7 +93,7 @@ reset(){
 
     registerForm = this.formBuilder.group({
       fullname: new FormControl("",[Validators.required,Validators.minLength(2),Validators.pattern("[a-zA-Z].*")]),
-      email: new FormControl("",[Validators.required,Validators.email]),
+      email: new FormControl("",[Validators.required]),
       role: new FormControl('',[Validators.required]),
       association: new FormControl('', Validators.required),
       phone:new FormControl("", [Validators.required,Validators.minLength(10),Validators.maxLength(10),Validators.pattern("[0-9]*")]),
@@ -114,8 +114,8 @@ reset(){
       mentoremail: new FormControl(''),
       projectname: new FormControl('', Validators.required),
       //projectstatus: new FormControl('', [Validators.required,Validators.pattern("[0-9]*")]),
-      startDate: new FormControl('', Validators.required),
-      endDate: new FormControl('', Validators.required),
+      startDate: new FormControl('', []),
+      endDate: new FormControl('', []),
     });
 
   //   subscribeToMentorChanges() {  bard

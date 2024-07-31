@@ -46,7 +46,7 @@
 
 <body class="bg-white-100">
   <nav>
-    <header class="bg-white py-4">
+    <header class="bg-neutral-500  py-1">
       <div class="container mx-auto flex justify-between items-center px-4">
         <h1 class="text-black text-xl font-bold flex items-center">
           <img class="mx-auto h-10 w-auto"
@@ -61,10 +61,16 @@
             <li id="Add_Mentor"><button type="button"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
                 (click)="goToPage('inactive')" *ngIf="isMentor || isAdmin">Past Interns</button></li>
-            <li id="Add_Mentor"><button type="button"
+            <!-- <li id="Add_Mentor"><button type="button"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
-                (click)="logout()">Logout</button></li>
-
+                (click)="logout()">Logout</button></li> -->
+                <div class="">
+                  <button mat-button [matMenuTriggerFor]="menu" class="border-2 shadow-lg rounded-lg md:px-2 py-4 mt-3 text-white bg-gradient-to-r from-blue-500 via-blue-700 to-blue-800 hover:bg-gradient-to-br focus:ring-4  focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80"><img class="h-10" src="../../assets/icons8-account.gif"><mat-icon>keyboard_arrow_down</mat-icon></button>
+                  <mat-menu #menu="matMenu">
+                    <button class="mb-2 text-lg font-bold text-white bg-gradient-to-r from-blue-200 via-blue-300 to-blue-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80" ></button>
+                    <button class="justify-center text-lg font-bold text-white bg-gradient-to-l from-blue-200 via-blue-300 to-blue-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80" mat-menu-item (click)="logout()"><u>Logout</u></button>
+                  </mat-menu>
+                </div>
           </ul>
         </nav>
       </div>

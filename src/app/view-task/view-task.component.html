@@ -135,10 +135,10 @@
             <td class="py-2 px-5">{{tasks.description}}</td>
             <td class="py-2 px-5">{{tasks.start}}</td>
             <td class="py-2 px-5">{{tasks.end}}</td>
-            <td class="py-2 px-5"><div class="hover:bg-slate-950 p-1 border-2 border-orange-200 bg-white rounded-lg items-center text-center text-base  text-[#E46A11] font-bold">{{tasks.status}}</div></td>
+            <td class="py-2 px-9"><div class="hover:bg-slate-950 p-1 border-2 border-orange-200 bg-white rounded-lg items-center text-center text-base  text-[#E46A11] font-bold">{{tasks.status}}</div></td>
             <!-- <td class="py-2 px-2" *ngIf="isMentor"><button class="btn btn-primary" (click)="openTaskDetete(tasks.id)" >Delete</button></td> -->
             <td class="py-2 px-14" *ngIf="isMentor"><button class="btn btn-primary" (click)="openEditTask(tasks)" >Edit</button></td>
-            <td class="py-2 px-2" *ngIf="isAdmin"><button class="btn btn-primary" (click)="openTaskDetete(tasks.id)" >Delete</button></td>
+            <td class="py-2 px-14" *ngIf="isAdmin"><button class="btn btn-primary" (click)="openTaskDetete(tasks.id)" >Delete</button></td>
             <!-- <td class="py-2 px-2" *ngIf="isAdmin"><button class="btn btn-primary" (click)="openEditTask(tasks)" >Edit</button></td> -->
           </tr>
 
